@@ -1,0 +1,456 @@
+.map-view-container {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.map-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  background: rgba(15, 12, 41, 0.85);
+  backdrop-filter: blur(12px);
+  padding: 1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  border-bottom: 1px solid var(--neon-border);
+}
+
+.map-header-actions {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.back-button {
+  padding: 0.5rem 1rem;
+  background-color: var(--matte-surface);
+  color: var(--matte-text);
+  border-radius: 8px;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+}
+
+.back-button:hover {
+  background-color: var(--matte-border);
+}
+
+.map-title {
+  flex: 1;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--matte-text);
+}
+
+.search-again-button {
+  padding: 0.5rem 1.25rem;
+  background-color: var(--matte-secondary);
+  color: white;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.search-again-button:hover:not(:disabled) {
+  background-color: var(--matte-primary);
+}
+
+.search-again-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.filter-toggle {
+  padding: 0.5rem 1.25rem;
+  background-color: var(--matte-primary);
+  color: white;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.filter-toggle:hover {
+  background-color: var(--matte-primary-dark);
+}
+
+.loading-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(245, 245, 240, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.loading-spinner {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #333;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.error-message {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: var(--shadow-lg);
+  text-align: left;
+  z-index: 1000;
+  max-width: 500px;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.error-message h3 {
+  font-size: 1.3rem;
+  color: var(--matte-error);
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.error-message p {
+  margin-bottom: 1rem;
+  color: var(--matte-text);
+  line-height: 1.6;
+}
+
+.error-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+.error-message button {
+  padding: 0.75rem 1.5rem;
+  background-color: var(--matte-primary);
+  color: white;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+}
+
+.error-message button:hover {
+  background-color: var(--matte-primary-dark);
+}
+
+.error-help {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background: var(--matte-surface);
+  border-radius: 8px;
+  border-left: 3px solid var(--matte-primary);
+}
+
+.error-help p {
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.error-help ol {
+  margin-left: 1.5rem;
+  margin-top: 0.5rem;
+}
+
+.error-help li {
+  margin-bottom: 0.5rem;
+  color: var(--matte-text);
+}
+
+.error-help code {
+  background: var(--matte-bg);
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  font-family: 'Courier New', monospace;
+  font-size: 0.9rem;
+}
+
+.map-error {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  text-align: center;
+}
+
+.map-error p {
+  margin-bottom: 1.5rem;
+  color: var(--matte-text);
+  font-size: 1.1rem;
+}
+
+.map-error button {
+  padding: 0.75rem 1.5rem;
+  background-color: var(--matte-primary);
+  color: white;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.locations-sidebar {
+  position: absolute;
+  top: 70px;
+  right: 0;
+  width: 320px;
+  max-height: calc(100vh - 70px);
+  background: rgba(26, 26, 46, 0.9);
+  backdrop-filter: blur(12px);
+  box-shadow: var(--shadow-lg);
+  overflow-y: auto;
+  z-index: 5;
+  padding: 1rem;
+  border-left: 1px solid var(--neon-border);
+}
+
+.locations-sidebar h3 {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--matte-text);
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--matte-border);
+}
+
+.chargers-sidebar {
+  position: absolute;
+  top: 70px;
+  right: 320px;
+  width: 360px;
+  max-height: calc(100vh - 70px);
+  background: rgba(18, 18, 32, 0.95);
+  backdrop-filter: blur(12px);
+  box-shadow: var(--shadow-lg);
+  overflow-y: auto;
+  z-index: 6;
+  padding: 1rem;
+  border-left: 1px solid var(--neon-border);
+  border-right: 1px solid var(--neon-border);
+}
+
+.chargers-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.chargers-label {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--matte-text-light);
+}
+
+.chargers-title {
+  margin: 0.1rem 0;
+  font-size: 1.1rem;
+  color: var(--matte-text);
+}
+
+.chargers-subtitle {
+  margin: 0;
+  color: var(--matte-text-light);
+  font-size: 0.9rem;
+}
+
+.chargers-close {
+  border: none;
+  background: var(--matte-border);
+  color: var(--matte-text);
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.chargers-close:hover {
+  background: var(--matte-primary);
+  color: white;
+}
+
+.chargers-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.chargers-empty {
+  color: var(--matte-text-light);
+  font-size: 0.9rem;
+}
+
+.charger-card {
+  background: rgba(36, 36, 62, 0.7);
+  border: 1px solid var(--matte-border);
+  border-radius: 12px;
+  padding: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.charger-card:hover {
+  border-color: var(--matte-primary);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.charger-card-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.35rem;
+}
+
+.charger-name {
+  margin: 0;
+  font-size: 1rem;
+  color: var(--matte-text);
+}
+
+.charger-distance {
+  display: inline-block;
+  margin-top: 0.15rem;
+  font-size: 0.85rem;
+  color: var(--matte-text-light);
+}
+
+.charger-meta-row {
+  display: flex;
+  gap: 0.35rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.25rem;
+}
+
+.info-window {
+  padding: 0.5rem;
+  min-width: 200px;
+}
+
+.info-window-header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.5rem;
+  margin-bottom: 0.35rem;
+  position: relative;
+}
+
+.info-window-title {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  line-height: 1.2;
+  width: auto;
+  text-align: left;
+  padding-right: 0;
+  flex: 1 1 auto;
+  align-self: center;
+}
+
+.info-window-close {
+  border: none;
+  background: transparent;
+  color: #1a1a2e;
+  font-size: 30px;
+  line-height: 1;
+  padding: 0;
+  cursor: pointer;
+  opacity: 0.75;
+  align-self: center;
+  margin-left: auto;
+}
+
+.info-window-close:hover {
+  opacity: 1;
+}
+
+.info-window-address {
+  display: inline-block;
+  margin: 0.1rem 0 0.35rem;
+  font-size: 0.9rem;
+  color: #2b5bd7;
+  text-decoration: underline;
+}
+
+.info-window-address:hover {
+  color: #1f46a8;
+}
+
+.info-window h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1a1a2e;
+  margin-bottom: 0.5rem;
+}
+
+.info-window p {
+  font-size: 0.9rem;
+  color: #444;
+  margin: 0.25rem 0;
+}
+
+.info-window strong {
+  color: #1a1a2e;
+}
+
+/* Hide Google's built-in InfoWindow close button so we only show our custom "×" */
+.gm-style-iw-c button.gm-ui-hover-effect {
+  display: none !important;
+}
+
+/* Hide the default InfoWindow chrome container (extra header bar/close control) */
+.gm-style-iw-ch {
+  display: none !important;
+}
+
+/* Add breathing room at the top of the native InfoWindow container */
+.gm-style-iw-c {
+  padding-top: 8px !important;
+}
+
+@media (max-width: 768px) {
+  .map-header {
+    padding: 0.75rem 1rem;
+  }
+
+  .map-title {
+    font-size: 1rem;
+  }
+
+  .locations-sidebar {
+    width: 100%;
+    max-width: 100%;
+    top: 60px;
+    max-height: calc(100vh - 60px);
+  }
+
+  .chargers-sidebar {
+    width: 100%;
+    right: 0;
+    top: 60px;
+    max-height: calc(100vh - 60px);
+  }
+}
+

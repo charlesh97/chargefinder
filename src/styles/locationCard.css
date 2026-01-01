@@ -1,0 +1,126 @@
+.location-card {
+  background: rgba(36, 36, 62, 0.6);
+  border: 1px solid var(--matte-border);
+  border-radius: 12px;
+  padding: 1rem;
+  margin-bottom: 0.75rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(4px);
+}
+
+.location-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+  border-color: var(--matte-primary);
+}
+
+.location-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.5rem;
+}
+
+.location-name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--matte-text);
+  flex: 1;
+  margin-right: 0.5rem;
+}
+
+.location-distance {
+  font-size: 0.85rem;
+  color: var(--matte-primary);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.location-address {
+  font-size: 0.9rem;
+  color: var(--matte-text-light);
+  margin-bottom: 0.5rem;
+}
+
+.location-chargers {
+  margin-top: 0.5rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--matte-border);
+}
+
+.charger-count {
+  font-size: 0.85rem;
+  color: var(--matte-success);
+  font-weight: 500;
+}
+
+.location-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-bottom: 0.5rem;
+}
+
+.status-badge,
+.access-badge,
+.meta-chip,
+.connector-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  line-height: 1.2;
+  border: 1px solid var(--matte-border);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--matte-text);
+}
+
+.status-badge.status-ok {
+  border-color: var(--matte-success);
+  color: var(--matte-success);
+}
+
+.status-badge.status-warn {
+  border-color: var(--matte-warning, #f5a524);
+  color: var(--matte-warning, #f5a524);
+}
+
+.location-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-bottom: 0.35rem;
+}
+
+.connector-row {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.35rem;
+}
+
+.connector-label {
+  font-size: 0.85rem;
+  color: var(--matte-text);
+  font-weight: 600;
+}
+
+.connector-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+}
+
+.location-footnotes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  font-size: 0.78rem;
+  color: var(--matte-text-light);
+  margin-top: 0.35rem;
+}
+

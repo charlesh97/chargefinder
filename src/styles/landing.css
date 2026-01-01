@@ -1,0 +1,528 @@
+.landing-page {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  background: radial-gradient(circle at center, #24243e 0%, #1a1a2e 50%, #0f0c29 100%);
+  padding: 2rem;
+  padding-top: 12vh;
+}
+
+.landing-content {
+  width: 100%;
+  max-width: 1100px;
+  text-align: center;
+}
+
+.landing-header {
+  margin-bottom: 4rem;
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.landing-title {
+  font-size: 4.5rem;
+  font-weight: 700;
+  color: var(--neon-text);
+  text-shadow: 
+    0 0 4px rgba(240, 240, 240, 0.5),
+    0 0 8px rgba(240, 240, 240, 0.38),
+    0 0 10px rgba(157, 80, 187, 0.38),
+    0 0 15px rgba(157, 80, 187, 0.31),
+    0 0 23px rgba(157, 80, 187, 0.25),
+    0 0 31px rgba(0, 210, 255, 0.19),
+    0 2px 4px rgba(0, 0, 0, 0.3);
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+  position: relative;
+  animation: neonPulse 3s ease-in-out infinite;
+}
+
+@keyframes neonPulse {
+  0%, 100% {
+    text-shadow: 
+      0 0 4px rgba(240, 240, 240, 0.5),
+      0 0 8px rgba(240, 240, 240, 0.38),
+      0 0 10px rgba(157, 80, 187, 0.38),
+      0 0 15px rgba(157, 80, 187, 0.31),
+      0 0 23px rgba(157, 80, 187, 0.25),
+      0 0 31px rgba(0, 210, 255, 0.19),
+      0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+  50% {
+    text-shadow: 
+      0 0 5px rgba(240, 240, 240, 0.63),
+      0 0 10px rgba(240, 240, 240, 0.5),
+      0 0 15px rgba(157, 80, 187, 0.5),
+      0 0 20px rgba(157, 80, 187, 0.44),
+      0 0 28px rgba(157, 80, 187, 0.38),
+      0 0 38px rgba(0, 210, 255, 0.31),
+      0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+}
+
+.landing-subtitle {
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: var(--neon-text-light);
+  text-shadow: 
+    0 0 5px rgba(0, 210, 255, 0.20),
+    0 0 11px rgba(0, 210, 255, 0.14),
+    0 1px 2px rgba(0, 0, 0, 0.2);
+  letter-spacing: 0.01em;
+  line-height: 1.6;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .landing-title {
+    font-size: 3rem;
+  }
+
+  .landing-subtitle {
+    font-size: 1.2rem;
+    padding: 0 1rem;
+  }
+
+  .landing-header {
+    margin-bottom: 3rem;
+  }
+}
+
+.search-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.search-form-content {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+}
+
+.search-form-text {
+  font-size: 1.5rem;
+  color: var(--neon-accent);
+  font-weight: 400;
+  text-shadow: 0 0 10px rgba(0, 210, 255, 0.3);
+  white-space: nowrap;
+}
+
+.search-input-textbox {
+  padding: 1rem 1.5rem;
+  font-size: 1.1rem;
+  border: 2px solid var(--matte-border);
+  border-radius: 12px;
+  background-color: rgba(26, 26, 46, 0.8);
+  color: var(--matte-text);
+  transition: all 0.2s ease;
+  min-width: 200px;
+  flex: 0 1 auto;
+  backdrop-filter: blur(8px);
+}
+
+.search-input-textbox:focus {
+  border-color: var(--matte-primary);
+  box-shadow: var(--shadow-md);
+  outline: none;
+}
+
+.search-input-textbox::placeholder {
+  color: var(--matte-text-light);
+}
+
+.location-selector {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.search-dropdown {
+  padding: 1rem 1.5rem;
+  font-size: 1.1rem;
+  border: 2px solid var(--matte-border);
+  border-radius: 12px;
+  background-color: rgba(26, 26, 46, 0.8);
+  color: var(--matte-text);
+  transition: all 0.2s ease;
+  min-width: 180px;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+}
+
+.search-dropdown:focus {
+  border-color: var(--matte-primary);
+  box-shadow: var(--shadow-md);
+  outline: none;
+}
+
+.custom-location-input {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.autocomplete-container {
+  position: relative;
+  min-width: 200px;
+  display: flex;
+  align-items: center;
+}
+
+/* Legacy Places Autocomplete dropdown styling (used by google.maps.places.Autocomplete) */
+.pac-container {
+  background-color: rgba(26, 26, 46, 0.98) !important;
+  border: 2px solid var(--neon-primary) !important;
+  border-radius: 12px !important;
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.6),
+    0 0 20px rgba(157, 80, 187, 0.3),
+    inset 0 0 10px rgba(157, 80, 187, 0.1) !important;
+  backdrop-filter: blur(12px) !important;
+  margin-top: 6px !important;
+  font-family: inherit !important;
+  overflow: hidden !important;
+  z-index: 9999 !important;
+}
+
+.pac-item {
+  background-color: transparent !important;
+  border-top: 1px solid rgba(157, 80, 187, 0.2) !important;
+  color: var(--neon-text) !important;
+  padding: 1rem 1.25rem !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+}
+
+.pac-item:first-child {
+  border-top: none !important;
+}
+
+.pac-item:hover,
+.pac-item-selected {
+  background-color: rgba(157, 80, 187, 0.25) !important;
+  box-shadow:
+    inset 0 0 15px rgba(157, 80, 187, 0.2),
+    0 0 10px rgba(157, 80, 187, 0.15) !important;
+  border-left: 3px solid var(--neon-primary) !important;
+  padding-left: calc(1.25rem - 3px) !important;
+}
+
+/* PlaceAutocompleteElement web component styling */
+gmp-place-autocomplete {
+  display: block;
+  width: 100%;
+  margin: 0 !important;
+  padding: 0 !important;
+  color-scheme: dark !important;
+  /* Google Maps Places UI Kit CSS custom properties */
+  --gmpx-color-surface: rgba(26, 26, 46, 0.8) !important;
+  --gmpx-color-on-surface: #f0f0f0 !important;
+  --gmpx-color-on-surface-variant: #b0b0b0 !important;
+  --gmpx-color-primary: #9d50bb !important;
+  --gmpx-color-outline: #302b63 !important;
+  --gmpx-color-on-surface-variant-2: #f0f0f0 !important;
+  --gmpx-font-family-base: inherit !important;
+}
+
+/* Ensure all text inside the component is light colored */
+gmp-place-autocomplete * {
+  color: #f0f0f0 !important;
+}
+
+/* Style the input inside the web component - target shadow DOM */
+gmp-place-autocomplete input,
+gmp-place-autocomplete::part(input) {
+  color: #f0f0f0 !important;
+}
+
+gmp-place-autocomplete input {
+  padding: 0.75rem 1rem !important;
+  font-size: 1.1rem !important;
+  border: 2px solid var(--matte-border) !important;
+  border-radius: 12px !important;
+  background-color: rgba(26, 26, 46, 0.8) !important;
+  color: #f0f0f0 !important;
+  transition: all 0.3s ease !important;
+  min-width: 200px !important;
+  backdrop-filter: blur(8px) !important;
+  font-family: inherit !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+gmp-place-autocomplete input:focus {
+  border-color: var(--neon-primary) !important;
+  box-shadow: 
+    var(--shadow-md),
+    0 0 15px rgba(157, 80, 187, 0.4),
+    inset 0 0 10px rgba(157, 80, 187, 0.1) !important;
+  outline: none !important;
+  background-color: rgba(26, 26, 46, 0.95) !important;
+  color: #f0f0f0 !important;
+}
+
+gmp-place-autocomplete input::placeholder {
+  color: var(--matte-text-light) !important;
+  opacity: 0.7 !important;
+}
+
+/* Style the autocomplete suggestions panel - using shadow DOM selectors */
+gmp-place-autocomplete::part(suggestions),
+gmp-place-autocomplete .pac-container {
+  background-color: rgba(26, 26, 46, 0.98) !important;
+  border: 2px solid var(--neon-primary) !important;
+  border-radius: 12px !important;
+  box-shadow: 
+    0 8px 24px rgba(0, 0, 0, 0.6),
+    0 0 20px rgba(157, 80, 187, 0.3),
+    inset 0 0 10px rgba(157, 80, 187, 0.1) !important;
+  backdrop-filter: blur(12px) !important;
+  margin-top: 4px !important;
+  font-family: inherit !important;
+  overflow: hidden !important;
+}
+
+gmp-place-autocomplete::part(suggestion),
+gmp-place-autocomplete .pac-item {
+  background-color: transparent !important;
+  border-top: 1px solid rgba(157, 80, 187, 0.2) !important;
+  color: var(--neon-text) !important;
+  padding: 1rem 1.25rem !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+}
+
+gmp-place-autocomplete::part(suggestion):first-child,
+gmp-place-autocomplete .pac-item:first-child {
+  border-top: none !important;
+}
+
+gmp-place-autocomplete::part(suggestion):hover,
+gmp-place-autocomplete::part(suggestion)[selected],
+gmp-place-autocomplete .pac-item:hover,
+gmp-place-autocomplete .pac-item-selected {
+  background-color: rgba(157, 80, 187, 0.25) !important;
+  box-shadow: 
+    inset 0 0 15px rgba(157, 80, 187, 0.2),
+    0 0 10px rgba(157, 80, 187, 0.15) !important;
+  border-left: 3px solid var(--neon-primary) !important;
+  padding-left: calc(1.25rem - 3px) !important;
+}
+
+.search-input-custom {
+  padding: 1rem 1.5rem;
+  font-size: 1.1rem;
+  border: 2px solid var(--matte-border);
+  border-radius: 12px;
+  background-color: rgba(26, 26, 46, 0.8);
+  color: var(--matte-text);
+  transition: all 0.3s ease;
+  min-width: 200px;
+  backdrop-filter: blur(8px);
+  flex: 1 1 360px;
+  width: 100%;
+}
+
+.search-input-custom:focus {
+  border-color: var(--neon-primary);
+  box-shadow: 
+    var(--shadow-md),
+    0 0 15px rgba(157, 80, 187, 0.4),
+    inset 0 0 10px rgba(157, 80, 187, 0.1);
+  outline: none;
+  background-color: rgba(26, 26, 46, 0.95);
+}
+
+.search-input-custom::placeholder {
+  color: var(--matte-text-light);
+}
+
+.location-switch-button {
+  padding: 0.75rem 1rem;
+  font-size: 0.9rem;
+  border: 1px solid var(--matte-border);
+  border-radius: 8px;
+  background-color: var(--matte-surface);
+  color: var(--matte-text);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.location-switch-button:hover {
+  background-color: var(--matte-border);
+}
+
+.search-arrow-button {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: var(--matte-primary);
+  color: white;
+  font-size: 2rem;
+  font-weight: 300;
+  box-shadow: var(--shadow-md);
+  transition: all 0.2s ease;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.search-arrow-button:hover {
+  background-color: var(--matte-primary-dark);
+  transform: scale(1.05);
+  box-shadow: var(--shadow-lg);
+}
+
+.search-arrow-button:active {
+  transform: scale(0.98);
+}
+
+/* Google Places Autocomplete styling - Neon Theme */
+.pac-container {
+  background-color: rgba(26, 26, 46, 0.98) !important;
+  border: 2px solid var(--neon-primary) !important;
+  border-radius: 12px !important;
+  box-shadow: 
+    0 8px 24px rgba(0, 0, 0, 0.6),
+    0 0 20px rgba(157, 80, 187, 0.3),
+    inset 0 0 10px rgba(157, 80, 187, 0.1) !important;
+  backdrop-filter: blur(12px) !important;
+  margin-top: 4px !important;
+  font-family: inherit !important;
+  overflow: hidden !important;
+}
+
+.pac-item {
+  background-color: transparent !important;
+  border-top: 1px solid rgba(157, 80, 187, 0.2) !important;
+  color: var(--neon-text) !important;
+  padding: 1rem 1.25rem !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  position: relative !important;
+}
+
+.pac-item:first-child {
+  border-top: none !important;
+}
+
+.pac-item:hover,
+.pac-item-selected {
+  background-color: rgba(157, 80, 187, 0.25) !important;
+  box-shadow: 
+    inset 0 0 15px rgba(157, 80, 187, 0.2),
+    0 0 10px rgba(157, 80, 187, 0.15) !important;
+  border-left: 3px solid var(--neon-primary) !important;
+  padding-left: calc(1.25rem - 3px) !important;
+}
+
+.pac-item-query {
+  color: var(--neon-text) !important;
+  font-size: 1rem !important;
+  font-weight: 500 !important;
+  text-shadow: 0 0 5px rgba(240, 240, 240, 0.3) !important;
+}
+
+.pac-matched {
+  color: var(--neon-accent) !important;
+  font-weight: 700 !important;
+  text-shadow: 0 0 8px rgba(0, 210, 255, 0.5) !important;
+}
+
+.pac-icon {
+  display: none !important;
+}
+
+/* Additional styling for better neon effect */
+.pac-item .pac-item-query {
+  display: block !important;
+  margin-bottom: 0.25rem !important;
+}
+
+.pac-item .pac-item-query:first-child {
+  margin-bottom: 0 !important;
+}
+
+@media (max-width: 768px) {
+  .search-form-content {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .search-form-text {
+    font-size: 1.2rem;
+  }
+
+  .search-input-textbox,
+  .search-dropdown,
+  .search-input-custom {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .custom-location-input {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .location-switch-button {
+    width: 100%;
+  }
+
+  .search-arrow-button {
+    width: 70px;
+    height: 70px;
+    font-size: 1.8rem;
+  }
+}
+
+/* Desktop: keep the search sentence on one line so long custom addresses don't wrap the row */
+@media (min-width: 769px) {
+  .search-form-content {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    width: fit-content; /* shrink-wrap so items pack left→right instead of stretching */
+    max-width: 100%;
+  }
+
+  .location-selector {
+    flex: 0 0 auto; /* shrink to content */
+    max-width: 360px;
+    min-width: 220px;
+  }
+
+  .custom-location-input {
+    flex-wrap: nowrap;
+    width: 100%;
+  }
+
+  .location-switch-button {
+    flex: 0 0 auto;
+  }
+}
+
