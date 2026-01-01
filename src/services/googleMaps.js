@@ -6,7 +6,7 @@
  */
 
 const GOOGLE_MAPS_API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
-const GOOGLE_PLACES_API_KEY = import.meta.env.VITE_GOOGLE_PLACES_API_KEY || GOOGLE_MAPS_API_KEY;
+const GOOGLE_PLACES_API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY || GOOGLE_MAPS_API_KEY;
 
 /**
  * Search for places using Google Places JavaScript API (PlacesService)
@@ -30,7 +30,7 @@ export const searchPlaces = (map, query, location, radius = DEFAULT_SEARCH_RADIU
   }
 
   if (!GOOGLE_PLACES_API_KEY || GOOGLE_PLACES_API_KEY === 'your_google_places_api_key_here') {
-    const errorMsg = 'Google Places API key is not configured. Please add VITE_GOOGLE_PLACES_API_KEY to your .env.local file.';
+    const errorMsg = 'Google Places API key is not configured. Please add VITE_GOOGLE_MAPS_API_KEY to your .env.local file.';
     console.error('[Google Maps]', errorMsg);
     throw new Error(errorMsg);
   }

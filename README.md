@@ -63,7 +63,7 @@ VITE_GOOGLE_MAPS_API_KEY=your_google_maps_api_key_here
 # Google Places API Key (Optional)
 # If not provided, will fall back to VITE_GOOGLE_MAPS_API_KEY
 # You can use the same key for both if you prefer
-VITE_GOOGLE_PLACES_API_KEY=your_google_places_api_key_here
+VITE_GOOGLE_MAPS_API_KEY=your_google_places_api_key_here
 
 # Google Maps Map ID (Optional)
 # Used for custom map styling. Get this from Google Cloud Console > Maps > Map Styles
@@ -80,7 +80,7 @@ Here's a complete `.env.local` example with all variables:
 
 ```env
 VITE_GOOGLE_MAPS_API_KEY=AIzaSyExample123456789
-VITE_GOOGLE_PLACES_API_KEY=AIzaSyExample123456789
+VITE_GOOGLE_MAPS_API_KEY=AIzaSyExample123456789
 VITE_GOOGLE_MAPS_MAP_ID=718ed42d62df3f2dc4e6ba9e
 VITE_OPEN_CHARGE_MAP_API_KEY=your_ocm_key_here
 ```
