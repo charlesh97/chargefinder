@@ -64,6 +64,30 @@ const MapView = ({ searchData, onBack }) => {
   const previousPlacesSignature = useRef('');
   const markersRef = useRef({ user: null, places: new Map(), chargers: new Map() });
   const [markerMode, setMarkerMode] = useState('pending'); // 'pending' | 'advanced' | 'legacy'
+  const [isMobile, setIsMobile] = useState(false);
+  const [isLocationsSidebarMinimized, setIsLocationsSidebarMinimized] = useState(true);
+
+  // Detect mobile screen size
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+      // On mobile, start minimized; on desktop, always expanded
+      if (window.innerWidth <= 768) {
+        setIsLocationsSidebarMinimized(true);
+      } else {
+        setIsLocationsSidebarMinimized(false);
+      }
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Toggle sidebar minimize/expand
+  const toggleLocationsSidebar = useCallback(() => {
+    setIsLocationsSidebarMinimized((prev) => !prev);
+  }, []);
 
   // Initialize map
   const onMapLoad = useCallback((mapInstance) => {
@@ -918,33 +942,78 @@ const MapView = ({ searchData, onBack }) => {
 
             {/* Location cards sidebar */}
             {places.length > 0 && (
-              <div className="locations-sidebar">
-                <h3>Locations ({places.length})</h3>
-                {places.map((place) => (
-                  <LocationCard
-                    key={place.place_id}
-                    location={place}
-                    distance={
-                      distances[place.place_id]
-                        ? `${distances[place.place_id].distance} (${distances[place.place_id].duration})`
-                        : null
-                    }
-                    onSelect={(loc) => {
-                      setSelectedPlace(loc);
-                      setSelectedCharger(null);
-                      setChargerPanelOpen(true);
-                      if (mapRef.current) {
-                        const position = {
-                          lat: loc.geometry.location.lat,
-                          lng: loc.geometry.location.lng,
-                        };
-                        mapRef.current.panTo(position);
-                        mapRef.current.setZoom(15);
-                      }
-                    }}
-                  />
-                ))}
-              </div>
+              <>
+                {/* Minimized button (mobile only) */}
+                {isMobile && isLocationsSidebarMinimized && (
+                  <button
+                    className="locations-sidebar-minimized"
+                    onClick={toggleLocationsSidebar}
+                    aria-label="Show locations"
+                  >
+                    <svg
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <line x1="3" y1="6" x2="21" y2="6"></line>
+                      <line x1="3" y1="12" x2="21" y2="12"></line>
+                      <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                    {places.length > 0 && (
+                      <span className="locations-count-badge">{places.length}</span>
+                    )}
+                  </button>
+                )}
+
+                {/* Full sidebar */}
+                {(!isMobile || !isLocationsSidebarMinimized) && (
+                  <div className={`locations-sidebar ${isMobile ? 'mobile-expanded' : ''}`}>
+                    <div className="locations-sidebar-header">
+                      <h3>Locations ({places.length})</h3>
+                      {isMobile && (
+                        <button
+                          className="locations-sidebar-minimize"
+                          onClick={toggleLocationsSidebar}
+                          aria-label="Minimize locations"
+                        >
+                          ×
+                        </button>
+                      )}
+                    </div>
+                    <div className="locations-sidebar-content">
+                      {places.map((place) => (
+                        <LocationCard
+                          key={place.place_id}
+                          location={place}
+                          distance={
+                            distances[place.place_id]
+                              ? `${distances[place.place_id].distance} (${distances[place.place_id].duration})`
+                              : null
+                          }
+                          onSelect={(loc) => {
+                            setSelectedPlace(loc);
+                            setSelectedCharger(null);
+                            setChargerPanelOpen(true);
+                            if (mapRef.current) {
+                              const position = {
+                                lat: loc.geometry.location.lat,
+                                lng: loc.geometry.location.lng,
+                              };
+                              mapRef.current.panTo(position);
+                              mapRef.current.setZoom(15);
+                            }
+                          }}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </>
             )}
 
             {selectedPlace && chargerPanelOpen && (

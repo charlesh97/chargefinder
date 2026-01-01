@@ -222,15 +222,108 @@
   z-index: 5;
   padding: 1rem;
   border-left: 1px solid var(--neon-border);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.locations-sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--matte-border);
 }
 
 .locations-sidebar h3 {
   font-size: 1.1rem;
   font-weight: 500;
   color: var(--matte-text);
-  margin-bottom: 1rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 1px solid var(--matte-border);
+  margin: 0;
+  flex: 1;
+}
+
+.locations-sidebar-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.locations-sidebar-minimize {
+  border: none;
+  background: var(--matte-border);
+  color: var(--matte-text);
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1.5rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.locations-sidebar-minimize:hover {
+  background: var(--matte-primary);
+  color: white;
+}
+
+/* Minimized circle button */
+.locations-sidebar-minimized {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--matte-primary);
+  color: white;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3), 0 0 20px rgba(157, 80, 187, 0.4);
+  z-index: 100;
+  transition: all 0.3s ease;
+  padding: 0;
+}
+
+.locations-sidebar-minimized:hover {
+  background: var(--matte-primary-dark);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4), 0 0 25px rgba(157, 80, 187, 0.6);
+  transform: scale(1.05);
+}
+
+.locations-sidebar-minimized:active {
+  transform: scale(0.95);
+}
+
+.locations-sidebar-minimized svg {
+  width: 24px;
+  height: 24px;
+  stroke: white;
+}
+
+.locations-count-badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  background: var(--matte-error, #ff4444);
+  color: white;
+  border-radius: 12px;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid rgba(26, 26, 46, 0.9);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .chargers-sidebar {
@@ -439,7 +532,25 @@
     font-size: 1rem;
   }
 
-  .locations-sidebar {
+  /* Mobile expanded sidebar - full screen overlay */
+  .locations-sidebar.mobile-expanded {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    max-width: 100%;
+    max-height: 100vh;
+    height: 100vh;
+    z-index: 100;
+    border-left: none;
+    border-top: 1px solid var(--neon-border);
+    padding-top: 60px;
+  }
+
+  /* Desktop sidebar - keep original behavior */
+  .locations-sidebar:not(.mobile-expanded) {
     width: 100%;
     max-width: 100%;
     top: 60px;
